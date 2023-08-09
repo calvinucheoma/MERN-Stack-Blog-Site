@@ -36,9 +36,14 @@ const Navbar = () => {
   // }, []); //eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_SERVER_URL}/profile`, {
-      credentials: 'include',
-    }).then((response) => {
+    fetch(
+      `${
+        process.env.REACT_APP_SERVER_URL || process.env.REACT_APP_DEV_SERVER_URL
+      }/profile`,
+      {
+        credentials: 'include',
+      }
+    ).then((response) => {
       // console.log(response);
       response.json().then((userInfo) => {
         // console.log(userInfo);
@@ -48,10 +53,15 @@ const Navbar = () => {
   }, []); //eslint-disable-line react-hooks/exhaustive-deps
 
   const logout = () => {
-    fetch(`${process.env.REACT_APP_SERVER_URL}/logout`, {
-      credentials: 'include',
-      method: 'POST',
-    }).then(() => {
+    fetch(
+      `${
+        process.env.REACT_APP_SERVER_URL || process.env.REACT_APP_DEV_SERVER_URL
+      }/logout`,
+      {
+        credentials: 'include',
+        method: 'POST',
+      }
+    ).then(() => {
       dispatch(logoutUser());
     });
   };

@@ -7,7 +7,11 @@ const Home = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_SERVER_URL}/post`).then((response) =>
+    fetch(
+      `${
+        process.env.REACT_APP_SERVER_URL || process.env.REACT_APP_DEV_SERVER_URL
+      }/post`
+    ).then((response) =>
       response.json().then((posts) => {
         setPosts(posts);
         setLoading(false);

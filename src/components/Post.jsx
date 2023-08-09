@@ -12,7 +12,8 @@ const Post = ({ post }) => {
             <img
               src={
                 post.cover
-                  ? process.env.REACT_APP_SERVER_URL + '/' + post.cover
+                  ? process.env.REACT_APP_SERVER_URL ||
+                    process.env.REACT_APP_DEV_SERVER_URL + '/' + post.cover
                   : noImage
               }
               alt="blog header"

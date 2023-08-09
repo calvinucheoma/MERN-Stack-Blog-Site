@@ -14,7 +14,11 @@ const BlogPost = () => {
   const userInfo = useSelector((state) => state.auth.user);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_SERVER_URL}/post/${id}`).then((response) =>
+    fetch(
+      `${
+        process.env.REACT_APP_SERVER_URL || process.env.REACT_APP_DEV_SERVER_URL
+      }/post/${id}`
+    ).then((response) =>
       response.json().then((postInfo) => {
         setPostInfo(postInfo);
         setLoading(false);

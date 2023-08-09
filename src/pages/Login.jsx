@@ -28,12 +28,17 @@ const Login = () => {
     setPasswordError('');
     setErrorMsg('');
 
-    const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/login`, {
-      method: 'POST',
-      body: JSON.stringify({ username, password }),
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'include',
-    });
+    const response = await fetch(
+      `${
+        process.env.REACT_APP_SERVER_URL || process.env.REACT_APP_DEV_SERVER_URL
+      }/login`,
+      {
+        method: 'POST',
+        body: JSON.stringify({ username, password }),
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+      }
+    );
 
     setIsLoading(false);
 

@@ -47,7 +47,11 @@ const EditPost = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_SERVER_URL}/post/${id}`).then((response) =>
+    fetch(
+      `${
+        process.env.REACT_APP_SERVER_URL || process.env.REACT_APP_DEV_SERVER_URL
+      }/post/${id}`
+    ).then((response) =>
       response.json().then((postInfo) => {
         setTitle(postInfo.title);
         setContent(postInfo.content);
@@ -68,7 +72,9 @@ const EditPost = () => {
       data.set('file', files?.[0]);
     }
     const response = await fetch(
-      `${process.env.REACT_APP_SERVER_URL}/post/${id}`,
+      `${
+        process.env.REACT_APP_SERVER_URL || process.env.REACT_APP_DEV_SERVER_URL
+      }/post/${id}`,
       {
         method: 'PUT',
         body: data,

@@ -25,7 +25,9 @@ const Register = () => {
     setErrorMsg('');
 
     const response = await fetch(
-      `${process.env.REACT_APP_SERVER_URL}/register`,
+      `${
+        process.env.REACT_APP_SERVER_URL || process.env.REACT_APP_DEV_SERVER_URL
+      }/register`,
       {
         method: 'POST',
         body: JSON.stringify({ username, password }),

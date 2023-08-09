@@ -53,11 +53,16 @@ const CreatePost = () => {
 
     console.log(files[0]);
 
-    const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/post`, {
-      method: 'POST',
-      body: data,
-      credentials: 'include',
-    });
+    const response = await fetch(
+      `${
+        process.env.REACT_APP_SERVER_URL || process.env.REACT_APP_DEV_SERVER_URL
+      }/post`,
+      {
+        method: 'POST',
+        body: data,
+        credentials: 'include',
+      }
+    );
 
     setLoading(false);
 
