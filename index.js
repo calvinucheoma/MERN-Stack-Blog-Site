@@ -25,7 +25,12 @@ dotenv.config();
 const app = express();
 
 // app.use(cors());
-app.use(cors({ credentials: true, origin: process.env.SERVER_URL })); //if we're using credentials, we specify more information
+app.use(
+  cors({
+    credentials: true,
+    origin: process.env.FRONTEND_SERVER_URL || process.env.SERVER_URL,
+  })
+); //if we're using credentials, we specify more information
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads')); //to display our images stored in the uploads folder on the frontend
